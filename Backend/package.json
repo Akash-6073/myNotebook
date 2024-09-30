@@ -1,9 +1,10 @@
 {
-  "name": "inotebook-backend",
+  "name": "mynotebook-backend",
   "version": "1.0.0",
-  "description": "iNotebook - Your notebook on the cloud",
+  "description": "myNotebook - Your notebook on the cloud",
   "main": "index.js",
   "scripts": {
+    "build": "tsc",
     "start": "node index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
