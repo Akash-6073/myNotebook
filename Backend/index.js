@@ -7,7 +7,7 @@ const cors = require('cors')
 const mongoURI = process.env.MONGO_URI;  // This should now be correctly loaded from .env
 
 const app = express()
-const port = 5000
+const port = process.env.PORT
 
 app.use(cors())
 app.use(express.json())

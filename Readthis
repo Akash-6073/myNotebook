@@ -1,6 +1,0 @@
-=> install concurrently package to  "npm i react-router-dom concurrently"  to run frontend and  backend simultaneously
-
-=> initialize  "both" : "concurrently \"npm run start\" \"nodemon backend/index.js\" "   in package.json
-
-=> in terminal " npm run both "   this will start frontend and backend simultaneously
-
