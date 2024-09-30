@@ -12,6 +12,7 @@ const port = process.env.PORT
 app.use(cors())
 app.use(express.json())
 
+mongoose.set('strictQuery', false);
 mongoose.connect(mongoURI)
   .then(() => console.log("Connected to Mongo Successfully"))
   .catch((e) => console.log("Not connected: ", e));
