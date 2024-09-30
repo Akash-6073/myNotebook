@@ -1,159 +1,121 @@
-import React ,{useState} from 'react'
-import {useNavigate} from 'react-router-dom'
+import React from 'react'
+import { useNavigate } from 'react-router-dom'
 import { Link } from 'react-router-dom';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import FootAbout from './FootAbout';
-
+import { useForm } from 'react-hook-form';
+import axios from 'axios';
 
 function Signup() {
-  const [credentials, setcredentials] = useState({name:"",email:"",password:"",cpassword:""})
-  let navigate = useNavigate();
-  const handleSubmit=async (e)=>{
-    e.preventDefault();
-    const response = await fetch("https://inotebook-2ghd.onrender.com/api/auth/createUser",{
-      method: "POST", 
-      headers: {
-        "Content-Type": "application/json",
-      },body: JSON.stringify({name:credentials.name, email:credentials.email,password:credentials.password,cpassword:credentials.cpassword}),
-    });
-    const json= await response.json();
-    console.log(json);
-      // redirect
-      // if(credentials.password!==credentials.cpassword)
-      // {
-      //   toast.error(`Password Doesn't Matches 😔`, {
-      //     position: "top-center",
-      //     autoClose: 1500,
-      //     hideProgressBar: false,
-      //     closeOnClick: true,
-      //     pauseOnHover: false,
-      //     draggable: true,
-      //     progress: undefined,
-      //     theme: "dark",
-      //     });;
-      // }
-      if(json.success)
-      {
-      localStorage.setItem('token',json.token) // this will save in the history
-      navigate("/home")
-      toast.success('Signed Up Succesfully  👍 !', {
-        position: "bottom-right",
-        autoClose: 1500,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: false,
-        draggable: true,
-        progress: undefined,
-        theme: "colored",
-        });;
-        console.log(json)
+    let navigate = useNavigate();
+    const { register, handleSubmit, formState: { errors, isSubmitting } } = useForm();
+    const url = process.env.REACT_APP_URL;
+    const handleSubmitSignup = async (data) => {
+        try {
+            const response = await axios.post(`${url}/createUser`, {
+                name: data.name,
+                email: data.email,
+                password: data.password,
+            });
 
-      }
-      else if (credentials.name==="" || credentials.email==="" || credentials.password==="")
-      {
-       
+            const json = response.data;
+            console.log(json);
 
+            if (json.success) {
+                localStorage.setItem('token', json.token); // Save token
+                navigate("/home");
+                toast.success('Signed Up Successfully 👍!', {
+                    position: "bottom-right",
+                    autoClose: 1500,
+                    theme: "colored",
+                });
+            }
+        } catch (error) {
+          if (error.response && error.response.status === 400) {
+            console.error("Validation Error: ", error.response.data.errors);
+            toast.error('User Already Exists', {
+               position: "top-center",
+               autoClose: 1500,
+               theme: "dark",
+            });
+         } else {
+            console.error(error);
+            toast.error('Something went wrong. Please try again.', {
+               position: "top-center",
+               autoClose: 1500,
+               theme: "dark",
+            });
+         }
+        }
+    };
 
-          toast.error('Fill all the Details', {
-            position: "top-center",
-            autoClose: 1500,
-            hideProgressBar: false,
-            closeOnClick: true,
-            pauseOnHover: false,
-            draggable: true,
-            progress: undefined,
-            theme: "dark",
-            });;
-      }
-      else if(credentials.name.length<3)
-      {
-        toast.error(`Username should be atleast 3 characters`, {
-          position: "top-center",
-          autoClose: 1500,
-          hideProgressBar: false,
-          closeOnClick: true,
-          pauseOnHover: false,
-          draggable: true,
-          progress: undefined,
-          theme: "dark",
-          });;
-      }
-      
-      else if(json.error="This user already exits")
-      {
-        toast.error(`User Already exists `, {
-          position: "top-center",
-          autoClose: 1500,
-          hideProgressBar: false,
-          closeOnClick: true,
-          pauseOnHover: false,
-          draggable: true,
-          progress: undefined,
-          theme: "dark",
-          });;
-      }
-  }
-  const onChange  = (e)=>{
-    e.preventDefault();
-    setcredentials({...credentials,[e.target.name]:e.target.value})
-}
-  return (
-    <div>
-      <div className='loginForm'>
-      <form action="" onSubmit={handleSubmit}>
-            <h1>Sign Up</h1>
-            <hr />
-            <div className="frm" >
-                <label htmlFor="">Username</label> 
+    return (
+        <div>
+            <div className='loginForm'>
+                <form onSubmit={handleSubmit(handleSubmitSignup)}>
+                    <h1>Sign Up</h1>
+                    <hr />
+                    <div className="frm">
+                        <label htmlFor="name">Username</label>
+                        <div className={errors.name?"passCheck errorSubmit":"passCheck "} style={{ display: "flex",border: "2px solid white", alignItems: "center", backgroundColor: "#E8F0FE", borderRadius: "5px" }}>
+                            <i style={{ margin: "0 15px" }} className="fa-solid fa-user"></i>
+                            <input
+                                type="text"
+                                name='name'
+                                placeholder={errors.name && "Username should be at least 3 characters"}
+                                {...register('name', { required: true, minLength: { value: 3, message: "Username should be at least 3 characters" } })}
+                                className={errors.name ? 'inputError' : ''}
+                            />
+                        </div>
+                        {/* {errors.name && <p style={{ color: 'red' }}>{errors.name.message}</p>} */}
+                        <br />
 
-                <div style={{display:"flex",alignItems:"center",backgroundColor:"#E8F0FE",borderRadius:"5px"}}>
-                    <i style={{margin:"0 15px"}} className="fa-solid fa-user"></i>
-                    <input type="name" name='name'  onChange={onChange} value={credentials.name} /> <br />
+                        <label htmlFor="email">Email</label>
+                        <div className={errors.email?"passCheck errorSubmit":"passCheck "} style={{ display: "flex",border: "2px solid white", alignItems: "center", backgroundColor: "#E8F0FE", borderRadius: "5px" }}>
+                            <i style={{ margin: "0 15px" }} className="fa-solid fa-envelope"></i>
+                            <input
+                                type="email"
+                                name='email'
+                                {...register('email', { required:true })}
+                                className={errors.email ? 'inputError' : ''}
+                                placeholder={errors.email && "Email is required"}
+                            />
+                        </div>
+                        {/* {errors.email && <p style={{ color: 'red' }}>{errors.email.message}</p>} */}
+                        <br />
 
-                </div> <br />
+                        <label htmlFor="password">Password</label>
+                        <div className={errors.password? "errorSubmit":""} style={{ display: "flex",border: "2px solid white", alignItems: "center", backgroundColor: "#E8F0FE", borderRadius: "5px" }}>
+                            <i style={{ margin: "0 15px" }} className="fa-solid fa-lock"></i>
+                            <input
+                                type="password"
+                                name='password'
+                                placeholder={errors.password && "Password must be at least 5 characters"}
+                                {...register('password', { required: "Password is required", minLength: { value: 5, message: "Password must be at least 5 characters" } })}
+                                className={errors.password ? 'inputError' : ''}
+                            />
+                        </div>
+                        {/* {errors.password && <p style={{ color: 'red' }}>{errors.password.message}</p>} */}
+                        <br />
 
-
-                
-                <label htmlFor="">Email</label> 
-
-                <div style={{display:"flex",alignItems:"center",backgroundColor:"#E8F0FE",borderRadius:"5px"}}>
-                    <i style={{margin:"0 15px"}} className="fa-solid fa-envelope"></i>
-                    <input type="email" name='email'  onChange={onChange}  value={credentials.email} />
-
-                </div> <br />
-
-
-                <label htmlFor="">Password</label>
-
-                <div style={{display:"flex",alignItems:"center",backgroundColor:"#E8F0FE",borderRadius:"5px"}}>
-
-                    <i style={{margin:"0 15px"}} className="fa-solid fa-lock"></i>
-                <input type="password" name='password'  onChange={onChange} minLength={5} value={credentials.password}   /> <br />
-
-                </div> <br />
-                {/* <input type="password" name='cpassword'  onChange={onChange} minLength={5} value={credentials.cpassword}   /> <br />
-                <label htmlFor="">Confirm Password</label> */}
-                <button type='submit'className='sinup' >Sign Up <i className="fa-solid fa-user-plus"></i>  </button>
-                <a>Already have an Account? <Link to="/login" style={{textDecoration:"underline",textUnderlineOffset:"3px"}}>Sign in </Link> </a>
-                <Link to='/' style={{textAlign:"center",color:"#ff004f",textDecoration:"underline",textUnderlineOffset:"5px"}}>- Why Create an account ? -</Link>
-                
+                        <button type='submit' className={isSubmitting?"sinup handlSubmmit":"sinup"} disabled={isSubmitting}>
+                            {isSubmitting ? "Signing up..." : "Sign Up"} {isSubmitting?"":<i className="fa-solid fa-user-plus"></i>} 
+                        </button>
+                        <a>Already have an Account? <Link to="/login" style={{ textDecoration: "underline", textUnderlineOffset: "3px" }}>Sign in </Link></a>
+                        <Link to='/' style={{ textAlign: "center", color: "#ff004f", textDecoration: "underline", textUnderlineOffset: "5px" }}>- Why Create an account ? -</Link>
+                    </div>
+                </form>
+                <ToastContainer position="top-center"
+                    autoClose={1500}
+                    hideProgressBar={false}
+                    closeOnClick
+                    draggable
+                    theme="light" />
             </div>
-            <ToastContainer position="top-center"
-                        autoClose={1500}
-                        hideProgressBar={false}
-                        newestOnTop={false}
-                        closeOnClick
-                        rtl={false}
-                        pauseOnFocusLoss
-                        draggable
-                        pauseOnHover={false}
-                        theme="light" />
-            </form>
-          </div>
-          <FootAbout/>
-    </div>
-  )
+            <FootAbout />
+        </div>
+    )
 }
 
-export default Signup
+export default Signup;

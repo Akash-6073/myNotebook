@@ -4,7 +4,7 @@ import FootAbout from "./FootAbout";
 function About() {
   // let a=useContext(NoteContext)
  
-  
+  const akash=process.env.REACT_APP_AKASH
   return (
   <>
      <div className="about" style={{minHeight:'100vh'}}>
@@ -13,7 +13,7 @@ function About() {
         <div className="aboutLeft">
           <img src={akash} alt="" />
           <h2 style={{fontFamily:"var(--font3)",padding:"5px 0"}}>Developer <i className="fa-solid fa-code"></i></h2>
-          <p>Our application myNotebook offers a sleek and intuitive interface for effortlessly capturing and managing your thoughts, ideas, and to-dos. Stay organized and inspired with the convenience of a digital notebook that adapts to your needs. <br />Made with <i className="fa-regular fa-heart"></i> by <span style={{textDecoration:"underline",textUnderlineOffset:"3px",}}>Akash Mahendrakar</span></p>
+          <p>Our application myNotebook offers a sleek and intuitive interface for effortlessly capturing and managing your thoughts, ideas, and to-dos. Stay organized and inspired with the convenience of a digital notebook that adapts to your needs. <br />Made with <i className="fa-regular fa-heart"></i> by <a target="_blank" href="https://akashmahendrakar.vercel.app/" style={{textDecoration:"underline",textUnderlineOffset:"3px",}}>Akash Mahendrakar</a></p>
         </div>
         <div className="aboutRight">
           <h2 style={{fontFamily:"var(--font3)"}}>Contact me on</h2> 

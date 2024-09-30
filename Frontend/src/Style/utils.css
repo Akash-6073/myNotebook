@@ -149,6 +149,9 @@ a{
     margin-top: 35px;
 }
 
+
+
+
 /* VIEW POPUP */
 
  
@@ -387,12 +390,18 @@ a{
 
         font-size: 17px !important;
         transition: all 0.2s;
-        border: 1px solid #ff004f !important;
+        /* border: 1px solid #ff004f !important; */
 
     }
     .sinup:hover{
         background-color: #f80753cc;
      
+    }
+
+    .handlSubmmit{
+        border: 1px  rgba(128, 128, 128, 0.447) !important;
+        background-color: rgba(128, 128, 128, 0.447) !important;
+        cursor: not-allowed !important;
     }
     .error{
         animation: shake 0.08s  linear 25;
@@ -436,4 +445,26 @@ a{
 }
 .fa-xmark:hover{
     color: #ff004f !important;
+}
+
+
+.inputError{
+    color: white !important;
+    /* background-color: rgba(246, 6, 6, 0.1) !important; */
+    border-radius: 3px !important;
+    border-top-left-radius: 0 !important;
+    border-bottom-left-radius: 0 !important;
+    caret-color: black;
+    color: red !important;
+}
+.inputError::placeholder {
+    color: red !important;
+    opacity: 1; /* Ensures that the color is applied fully */
+}
+.errorSubmit{
+    /* background-color: red !important; */
+    border: 2px solid rgba(235, 85, 85, 0.556) !important;
+    background-color: rgba(255, 0, 0, 0.1) !important;
+    color: red !important;
+    box-shadow: 0 4px 10px rgba(255, 0, 0, 0.3), 0 3px 5px rgba(0, 0, 0, 0.1);
 }

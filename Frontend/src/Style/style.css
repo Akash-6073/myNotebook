@@ -351,6 +351,8 @@ border-radius: 5px;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0);
     max-height: 80%;
     overflow: auto;
+    /* box-shadow: 0 4px 10px rgba(228, 158, 158, 0.3), 0 3px 5px rgba(0, 0, 0, 0.1); */
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 
 }
 .frm{
@@ -358,6 +360,7 @@ border-radius: 5px;
     flex-direction: column;
     padding: 45px;
     padding-top: 25px;
+    
 
 }
 .loginForm form input{
@@ -371,6 +374,7 @@ border-radius: 5px;
     border-bottom-left-radius: 0;
     border-top-left-radius: 0;
     transition: all 0.3s;
+    
     
 }
 .frm button{
@@ -453,6 +457,16 @@ border-radius: 5px;
     max-height: 50%;
     border-radius: 50%;
 }
+.about img {
+    width: 30vw; /* Set width as a percentage of the viewport width */
+    height: auto; /* Automatically adjust height to maintain aspect ratio */
+    max-width: 150px; /* Optional: Set a max-width for larger screens */
+    max-height: 150px; /* Optional: Set a max-height for larger screens */
+    border-radius: 50%; /* This makes the image circular */
+    object-fit: cover; /* Ensures the image covers the circular area nicely */
+    border: 2px solid #fff; /* Optional: adds a border for better visibility */
+  }
+  
 .aboutRight{
     width: 50%;
     display: flex;
@@ -735,3 +749,18 @@ border-radius: 5px;
 
 
 
+.loaderContainer {
+    display: flex;              /* Use flexbox */
+    flex-direction: column;
+    justify-content: center;    /* Center horizontally */
+    align-items: center;        /* Center vertically */
+    /* height: 100vh;             Full viewport height */
+    /* width: 100%;                Full width */
+    height: 100%;
+}
+
+.noteUpdateDelete{
+    background-color: rgba(128, 128, 128, 0.364) !important;
+    cursor: not-allowed !important;
+    box-shadow: none !important;
+}

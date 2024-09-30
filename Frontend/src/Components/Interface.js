@@ -1,14 +1,17 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
+import main from '../Images/MAIN.png'
 import inf from '../Images/add.png'
 import edt from '../Images/edit.png'
 import del from '../Images/del.png'
-import main from '../Images/MAIN.png'
 import Quotegen from './Quotegen'
 import FootAbout from './FootAbout'
 
 function Interface() {
- 
+  const main = process.env.REACT_APP_MAIN
+  const inf = process.env.REACT_APP_INF
+  const edt = process.env.REACT_APP_EDT
+  const del = process.env.REACT_APP_DEL
   return (
     <>
     <div style={{minHeight:"100vh"}}>
@@ -37,7 +40,7 @@ function Interface() {
           <Link style={{cursor:"auto"}} to={localStorage.getItem('token')?"/home":"/login"}><button className='btn btn1' style={{cursor:"pointer"}}>{localStorage.getItem('token')?"Start making notes":"Try for free"}</button></Link>
                 </div>
                 <div className="isRight">
-                   <img className='zoom' src={main}alt="" />
+                   <img className='zoom' src={main} alt="" />
                 </div>
         </div>
        

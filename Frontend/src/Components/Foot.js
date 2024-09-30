@@ -17,7 +17,6 @@ function Foot() {
            <a target='_blank' href="https://www.instagram.com/akash__mahendrakar/"><i className="fa-brands fa-instagram"></i></a> 
            <a target='_blank' href="https://github.com/Akash-6073"><i className="fa-brands fa-github"></i></a> 
            <a target='_blank' href="https://www.linkedin.com/in/akash-mahendrakar-59b8a1220/"><i className="fa-brands fa-linkedin"></i></a> 
-           <a target='_blank' href="https://wa.me/918919596263"><i className="fa-brands fa-whatsapp " ></i></a>
            </div>
            <div className="hr2">
           <hr />
