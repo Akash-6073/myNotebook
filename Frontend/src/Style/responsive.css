@@ -1,0 +1,312 @@
+* {
+    box-sizing: border-box;
+  }
+ 
+  .nav {
+    height: 60px;
+    width: 100%;
+  }
+  
+  .nav > .nav-header {
+    display: inline;
+  }
+  
+  .nav > .nav-header > .nav-title {
+    display: inline-block;
+    font-size: 22px;
+    color: #fff;
+    padding: 10px 10px 10px 10px;
+  }
+  
+  .nav > .nav-btn {
+    display: none;
+  }
+  
+  .nav > .nav-links {
+    /* display: inline; */
+    float: right;
+    font-size: 25px !important;
+  }
+  
+  .nav > .nav-links > a {
+    display: inline-block;
+    /* padding: 13px 10px 13px 10px; */
+  }
+  
+ 
+  .nav > #nav-check {
+    display: none;
+  }
+  
+  @media (max-width:1113px) {
+    .lout{
+      margin-left: 0;
+      background-color: #ff004f !important;
+      color: white !important;
+    }
+    .lout :hover{
+      background-color: #ff0051b4 !important;
+    }
+    .rightNav a,.login,.siup,.lout{
+        font-size: 22px !important;
+    }
+    .vertical{
+        display: none ;
+    }
+    .nav > .nav-btn {
+      display: inline-block;
+      position: absolute;
+      right: 0px;
+      top: 5px;
+    }
+    .nav > .nav-btn > label {
+      display: inline-block;
+      width: 50px;
+      height: 50px;
+      padding: 13px;
+    }
+ 
+    .nav > .nav-btn > label > span {
+      display: block;
+      width: 25px;
+      height: 10px;
+      border-top: 2px solid black;
+      cursor: pointer;
+    }
+    .nav > .nav-links {
+      position: absolute;
+      display: block;
+      width: 100%;
+      background-color: black;
+      color: white !important;
+      height: 0px;
+      transition: all 0.3s ease-out;
+      overflow-y: hidden;
+      top: 60px;
+      left: 0px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-around;
+    }
+    .nav > .nav-links > a {
+        display: inline-block;
+        padding: 13px 23px;
+    }
+    .nav > .nav-links > a {
+      display: block;
+      /* width: 100%; */
+      margin: 0;
+      color: aliceblue;
+    }
+    .nav > #nav-check:not(:checked) ~ .nav-links {
+      height: 0px;
+      text-align: center;
+    }
+    .nav > #nav-check:checked ~ .nav-links {
+      height:415px;
+      overflow: auto;
+      text-align: center !important;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-around;
+    }
+    .lginSignup{
+        display: flex;
+        flex-direction: column;
+    }
+    .lginSignup a{
+        margin: 0;
+        padding: 13px 23px;
+        font-size: 30px !important;
+    }
+  }
+  @media (max-width:1383px)
+  {
+    .isRight{
+      display: none;
+    }
+    .isLeft{
+      width: 100vw;
+    }
+    .interfaceSign{
+      width: 80vw;
+    }
+    .quoteHr{
+      width: 60vw;
+    }
+    
+  }
+@media (max-width:1496px){
+
+.pricing{
+  height: 100%;
+}
+.price{
+  padding-top: 75px;
+  width: 80vw;
+}
+.pcard2{
+  scale: 1 !important;
+}
+}
+@media (max-width:883px){
+  .containerInterface h1,.isLeft h2,.interfaceOptions h1,.quoteText{
+    font-size: 28px;
+    text-align: center;
+
+  }
+
+  .containerInterface p,.isLeft p{
+    font-size: 23px;
+  }
+  .containerInterface {
+    height: 400px;
+    padding-top: 60px;
+  }
+  .interfaceSign{
+    margin-top: 70px;
+  }
+  .interfaceInfo{
+    margin-top: 70px;
+  }
+  .interfaceOptions{
+    margin-top: 80px;
+  }
+  .isLeft button {
+    margin-top: 30px;
+}
+  .btn1{
+    font-size: 15px !important;
+  }
+  
+  
+  
+}
+@media (max-width:910px){
+  .foot{
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+}
+@media (max-width:1015px){
+  /* .about{
+    height: 110vh;
+  }
+  .aboutContainer{
+    flex-direction: column;
+    width: 100vw;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+  } */
+
+  .aboutContainer{
+    width: 95vw;
+    margin: 0 15px;
+  }
+  .aboutLeft img{
+    height: 30%;
+  }
+
+}
+@media (max-width:1400px)
+{
+  .notei{
+    width: 80vw;
+  }
+}
+@media (max-width:620px)
+{
+.viewPopup{
+  max-width: 95vw;
+  min-width: 90vw;
+
+}
+}
+  @media (max-width:558px)
+  {
+    .ifcard{
+      margin: 15px 6px;
+    }
+    .containerInterface h1{
+      font-size: 20px;
+    }
+    .containerInterface p{
+      font-size: 17px;
+      text-align: center;
+    }
+    .containerHome form input,.containerHome form textarea{
+      width: 80vw;
+      max-width: 80vw;
+      min-width: 80vw;
+    }
+    .interfaceType{
+      font-size: 25px;
+    }
+   
+  }
+  @media (max-width:538px)
+  {
+    .cards{
+       display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    }
+    .card{
+      width: 70vw;
+      overflow-x: auto;
+    }
+  }
+  @media (max-width:510px)
+  {
+    .aboutContainer{
+      overflow-y: auto;
+    }
+    .aboutLeft p {
+      font-size: 15px;
+    }
+    .aboutLeft img{
+      height: 20%;
+    }
+    .aboutLeft h2,.aboutRight h2{
+      font-size: 20px;
+    }
+  
+  }
+  @media (max-width:440px)
+  {
+    .aboutLeft p {
+      font-size: 13px;
+    }
+    .aboutLeft img{
+      height: 18%;
+    }
+    .loginForm form input{
+      width: 55vw;
+    }
+    .popup input,#edescription{
+      max-width: 85vw;
+      min-width: 85vw;
+  }
+  .popup{
+    width: 95vw;
+
+  }
+  .delPopup{
+    width: 85vw;
+  }
+
+  .priceCard{
+    width: 75vw;
+    margin: 15px 0;
+  }
+}
+@media (max-width:425px)
+{
+  .designs{
+    width: 75vw ;
+    margin: 25px 0;
+  }
+}
