@@ -9,6 +9,11 @@ const JWT_Secret = process.env.JWT
 const router=express.Router();
 
 
+router.get('/',(req,res)=>{
+    res.send("hello man")
+})
+
+
 // Route 1 :  to create a user  ,  post : "/api/auth/createUser"
 router.post('/createUser',[
     body('name', 'Enter a valid Name').isLength({min:3}),
